@@ -38,6 +38,11 @@ jar {
 modifyPom { pom ->
 	pom.project {
 		name "MiniProfiler JVM Core"
-		description "MiniProfiler JVM is an implementation of the StackExchange MiniProfiler for the JVM. It provides easily accessible profiling information while developing a web-based app."
+		description """\
+MiniProfiler JVM is an implementation of the StackExchange MiniProfiler for the JVM. It provides easily accessible profiling information while developing a web-based app.
+
+Note: this is forked version of main development stream. For more details take a look at the end of /miniprofiler-jvm/README.md or at
+https://github.com/dmurat/miniprofiler-jvm/tree/myModifications
+"""
 	}
 }

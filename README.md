@@ -119,3 +119,23 @@ Please raise issues in the [GitHub issue tracker][3]
 [1]:https://travis-ci.org/tomdcc/miniprofiler-jvm
 [2]:http://miniprofiler.com/
 [3]:https://github.com/tomdcc/miniprofiler-jvm/issues
+
+Fork notes
+----------
+- This `miniprofiler-jvm` version (0.3.1) is my fork of main development stream with few enhancements (see changelog). I have use it in production as underlying implementation for
+  `grails-miniprofiler` v0.3.1 (also my fork) plugin (available at https://github.com/dmurat/grails-miniprofiler/tree/myModifications).
+- This fork is intended to work with grails 2.3.x. For later grails versions (i.e. 2.4.x) please look at latest version at original project github page - https://github.com/tomdcc/miniprofiler-jvm
+- Source code for this fork is available at https://github.com/dmurat/miniprofiler-jvm/tree/myModifications (all changes are in myModification branch).
+- Released version for this fork is available in maven compatible repository at https://github.com/dmurat/mvn-repo/raw/master/releases/, so make sure that you have it included in yours build
+  configuration.
+- Most probably, this is last version which will be released. However, there might be a version which will be a fork for 0.4.1 version (or later) of original project. Currently I don't have any plans
+  to maintain it further.
+- I have submitted pull requests of all my changes to the original project. However, author ignored them and did not included them in original source tree. So I was somewhat forced to publish this
+  fork with primary intention to make my life somewhat easier.
+
+Changelog
+---------
+### 0.3.1 - forked
+  - exposing various GUI configuration options to be able to configure them from miniprofiler's GSP tag
+  - increasing max width of miniprofiler's popup to be able to see longer urls
+  - few JavaScript fixes to improve stability
