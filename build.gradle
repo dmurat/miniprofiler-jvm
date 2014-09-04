@@ -47,10 +47,10 @@ subprojects {
 		apply plugin: "maven"
 		apply plugin: "signing"
 
-		signing {
-			sign configurations.archives
-			required { !isSnapshot && gradle.taskGraph.hasTask(uploadArchives) }
-		}
+//		signing {
+//			sign configurations.archives
+//			required { !isSnapshot && gradle.taskGraph.hasTask(uploadArchives) }
+//		}
 
 		task javadocJar(type: Jar, dependsOn: javadoc) {
 			classifier = 'javadoc'
@@ -72,20 +72,27 @@ subprojects {
 
 		uploadArchives { task ->
 			repositories.mavenDeployer {
-				if(!isSnapshot) {
-					beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-				}
+//				if(!isSnapshot) {
+//					beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//				}
 				uniqueVersion = false
-				gradle.taskGraph.whenReady { taskGraph ->
-					if (taskGraph.hasTask(task)) {
-						repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-							authentication(userName: sonatypeOssUsername, password: sonatypeOssPassword)
-						}
-						snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-							authentication(userName: sonatypeOssUsername, password: sonatypeOssPassword)
-						}
-					}
-				}
+//				gradle.taskGraph.whenReady { taskGraph ->
+//					if (taskGraph.hasTask(task)) {
+//						repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//							authentication(userName: sonatypeOssUsername, password: sonatypeOssPassword)
+//						}
+//						snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//							authentication(userName: sonatypeOssUsername, password: sonatypeOssPassword)
+//						}
+//					}
+//				}
+        gradle.taskGraph.whenReady { taskGraph ->
+          if (taskGraph.hasTask(task)) {
+            def homeDir = System.getProperty("user.home")
+            repository(url: "file://${homeDir}/localMavenDeploy/repo/releases")
+            snapshotRepository(url: "file://${homeDir}/localMavenDeploy/repo/snapshots/")
+          }
+        }
 			}
 		}
 
