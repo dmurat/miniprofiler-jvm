@@ -122,8 +122,8 @@ Please raise issues in the [GitHub issue tracker][3]
 
 Fork notes
 ----------
-- This `miniprofiler-jvm` version (0.3.1) is my fork of main development stream with few enhancements (see changelog). I have use it in production as underlying implementation for
-  `grails-miniprofiler` v0.3.1 (also my fork) plugin (available at https://github.com/dmurat/grails-miniprofiler/tree/myModifications).
+- This `miniprofiler-jvm` version (0.3.2) is my fork of main development stream with few enhancements (see changelog). I have use it in production as underlying implementation for
+  `grails-miniprofiler` v0.3.2 (also my fork) plugin (available at https://github.com/dmurat/grails-miniprofiler/tree/myModifications).
 - This fork is intended to work with grails 2.3.x. For later grails versions (i.e. 2.4.x) please look at latest version at original project github page - https://github.com/tomdcc/miniprofiler-jvm
 - Source code for this fork is available at https://github.com/dmurat/miniprofiler-jvm/tree/myModifications (all changes are in myModification branch).
 - Released version for this fork is available in maven compatible repository at https://github.com/dmurat/mvn-repo/raw/master/releases/, so make sure that you have it included in yours build
@@ -135,6 +135,8 @@ Fork notes
 
 Changelog
 ---------
+### 0.3.2 - forked
+  - JavaScript fix: remove queries div when user click on any profiler button.
 ### 0.3.1 - forked
   - exposing various GUI configuration options to be able to configure them from miniprofiler's GSP tag
   - increasing max width of miniprofiler's popup to be able to see longer urls
