@@ -344,20 +344,32 @@ var MiniProfiler = (function () {
             // this happens on every keystroke, and :visible is crazy expensive in IE <9
             // and in this case, the display:none check is sufficient.
             var popup = $('.profiler-popup').filter(function () { return $(this).css("display") !== "none"; });
+            var bg, queries, allQueries, button, isEscPress, hidePopup, hideQueries;
+
+            bg = $('.profiler-queries-bg');
+            allQueries = $('.profiler-queries');
 
             if (!popup.length) {
+                if (bg && bg.is(':visible')) {
+                    bg.remove();
+                }
+
+                if (allQueries) {
+                    allQueries.hide();
+                }
+
                 return;
             }
 
-            var button = popup.siblings('.profiler-button'),
-                queries = popup.closest('.profiler-result').find('.profiler-queries'),
-                bg = $('.profiler-queries-bg'),
-                isEscPress = e.type == 'keyup' && e.which == 27,
-                hidePopup = false,
-                hideQueries = false;
+            button = popup.siblings('.profiler-button');
+            isEscPress = e.type == 'keyup' && e.which == 27;
+            hidePopup = false;
+            hideQueries = false;
+
+            queries = popup.closest('.profiler-result').find('.profiler-queries');
 
             if (bg.is(':visible')) {
-                hideQueries = isEscPress || (e.type == 'click' && !$.contains(queries[0], e.target) && !$.contains(popup[0], e.target));
+                hideQueries = isEscPress || (queries.length < 1) || (e.type == 'click' && !$.contains(queries[0], e.target) && !$.contains(popup[0], e.target));
             }
             else if (popup.is(':visible')) {
                 hidePopup = isEscPress || (e.type == 'click' && !$.contains(popup[0], e.target) && !$.contains(button[0], e.target) && button[0] != e.target);
@@ -365,7 +377,7 @@ var MiniProfiler = (function () {
 
             if (hideQueries) {
                 bg.remove();
-                queries.hide();
+                allQueries.hide();
             }
 
             if (hidePopup) {
